@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../Routes/route.js" defer></script>
+</head>
+<body>
+    <div class="min-h-screen bg-gradient-to-r from-blue-400 to-purple-500 p-4 flex flex-col overflow-auto gap-2">
+        <!-- Improved header -->
+        <div class="navbar bg-white rounded-2xl shadow-lg p-2">
+          <div class="navbar-start">
+              <div class="dropdown">
+                  <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                      <i class="fas fa-bars"></i>
+                  </div>
+                  <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52">
+                      <li><a onclick="route('sales')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-chart-line mr-2"></i>Sales Dashboard</a></li>
+                      <li><a onclick="route('add-product')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-plus mr-2"></i>Add Product</a></li>
+                      <div class="divider my-1"></div>
+                      <li><a onclick="route('login')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-sign-in-alt mr-2"></i>Sign In</a></li>
+                      <li><a onclick="route('register')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-user-plus mr-2"></i>Register</a></li>
+                      <div class="divider my-1"></div>
+                      <li><a onclick="route('logout')" class="text-red-600 hover:text-red-700"><i class="fas fa-sign-out-alt mr-2"></i>Sign Out</a></li>
+                  </ul>
+              </div>
+              <a class="btn btn-ghost text-xl text-blue-600">San-store</a>
+          </div>
+          
+          <div class="navbar-center hidden lg:flex">
+              <ul class="menu menu-horizontal px-1 gap-2">
+                  <li><a onclick="route('sales')" class="btn btn-ghost text-gray-700 hover:text-blue-600"><i class="fas fa-chart-line mr-2"></i>Sales Dashboard</a></li>
+                  <li><a onclick="route('add-product')" class="btn btn-ghost text-gray-700 hover:text-blue-600"><i class="fas fa-plus mr-2"></i>Add Product</a></li>
+              </ul>
+          </div>
+          
+          <div class="navbar-end gap-2">
+              <div class="hidden lg:flex gap-2">
+                  <button onclick="route('login')" class="btn btn-primary bg-gradient-to-r from-blue-400 to-purple-500 btn-sm hover:bg-blue-50">
+                      <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                  </button>
+                  <button onclick="route('register')" class="btn btn-primary btn-sm">
+                      <i class="fas fa-user-plus mr-2"></i>Register
+                  </button>
+              </div>
+              <button onclick="route('logout')" class="hidden lg:flex btn btn-error btn-sm">
+                  <i class="fas fa-sign-out-alt mr-2"></i>Sign Out
+              </button>
+          </div>
+      </div>
+
+        <!-- scan button -->
+        <div class="flex rounded-2xl">
+            <button class="btn btn-warning text-white w-full">
+                <i class="fas fa-qrcode mr-2"></i>Scan Code
+            </button>
+        </div>
+
+        <!-- cart -->
+<div class="space-y-4">
+  <div class="cart bg-white rounded-2xl shadow-md p-4 flex flex-col gap-3">
+      <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <i class="fas fa-box text-blue-600 text-xl"></i>
+              </div>
+              <div>
+                  <h1 class="text-lg font-bold text-gray-800">Produk Elektronik</h1>
+                  <p class="text-sm text-gray-500">Kode: 22002920</p>
+              </div>
+          </div>
+          <h2 class="text-xl font-semibold text-blue-600">Rp. 20.000</h2>
+      </div>
+      
+      <div class="flex justify-between items-center">
+          <div class="flex items-center border rounded-lg">
+              <button class="btn btn-ghost btn-sm">-</button>
+                <input type="number" min="1" value="1" class="w-12 text-center bg-white text-black pl-4" readonly>
+              <button class="btn btn-ghost btn-sm">+</button>
+          </div>
+          <button class="btn btn-error btn-sm">
+              <i class="fas fa-trash-alt mr-2"></i>Hapus
+          </button>
+      </div>
+  </div>
+
+  <div class="cart bg-white rounded-2xl shadow-md p-4 flex flex-col gap-3">
+      <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                  <i class="fas fa-tshirt text-green-600 text-xl"></i>
+              </div>
+              <div>
+                  <h1 class="text-lg font-bold text-gray-800">Pakaian Casual</h1>
+                  <p class="text-sm text-gray-500">Kode: 22002921</p>
+              </div>
+          </div>
+          <h2 class="text-xl font-semibold text-blue-600">Rp. 20.000</h2>
+      </div>
+      
+      <div class="flex justify-between items-center">
+        <div class="flex items-center border rounded-lg">
+            <button class="btn btn-ghost btn-sm">-</button>
+              <input type="number" min="1" value="1" class="w-12 text-center bg-white text-black pl-4" readonly>
+            <button class="btn btn-ghost btn-sm">+</button>
+        </div>
+        <button class="btn btn-error btn-sm">
+            <i class="fas fa-trash-alt mr-2"></i>Hapus
+        </button>
+    </div>
+  </div>
+</div>
+
+<!-- Total -->
+<div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg rounded-t-2xl p-4">
+  <div class="flex justify-between items-center">
+      <span class="text-lg font-semibold text-gray-800">Total</span>
+      <span class="text-2xl font-bold text-blue-600">Rp. 40.000</span>
+  </div>
+</div>
+    </div>
+</body>
+</html>

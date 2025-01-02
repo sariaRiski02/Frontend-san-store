@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../Routes/route.js" defer></script>
+</head>
+<body>
+    <div class="min-h-screen bg-gradient-to-r from-blue-400 to-purple-500 p-4 flex flex-col overflow-auto gap-2">
+        <!-- Header section remains the same -->
+        <div class="navbar bg-white rounded-2xl shadow-lg p-2">
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52">
+                        <li><a onclick="route('sales')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-chart-line mr-2"></i>Sales Dashboard</a></li>
+                        <li><a onclick="route('add-product')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-plus mr-2"></i>Add Product</a></li>
+                        <div class="divider my-1"></div>
+                        <li><a onclick="route('login')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-sign-in-alt mr-2"></i>Sign In</a></li>
+                        <li><a onclick="route('register')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-user-plus mr-2"></i>Register</a></li>
+                        <div class="divider my-1"></div>
+                        <li><a onclick="route('logout')" class="text-red-600 hover:text-red-700"><i class="fas fa-sign-out-alt mr-2"></i>Sign Out</a></li>
+                    </ul>
+                </div>
+                <a class="btn btn-ghost text-xl text-blue-600">San-store</a>
+            </div>
+            
+            <div class="navbar-center hidden lg:flex">
+                <ul class="menu menu-horizontal px-1 gap-2">
+                    <li><a onclick="route('sales')" class="btn btn-ghost text-gray-700 hover:text-blue-600"><i class="fas fa-chart-line mr-2"></i>Sales Dashboard</a></li>
+                    <li><a onclick="route('add-product')" class="btn btn-ghost text-gray-700 hover:text-blue-600"><i class="fas fa-plus mr-2"></i>Add Product</a></li>
+                </ul>
+            </div>
+            
+            <div class="navbar-end gap-2">
+                <div class="hidden lg:flex gap-2">
+                    <button onclick="route('login')" class="btn btn-primary bg-gradient-to-r from-blue-400 to-purple-500 btn-sm hover:bg-blue-50">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                    </button>
+                    <button onclick="route('register')" class="btn btn-primary btn-sm">
+                        <i class="fas fa-user-plus mr-2"></i>Register
+                    </button>
+                </div>
+                <button onclick="route('logout')" class="hidden lg:flex btn btn-error btn-sm">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Sign Out
+                </button>
+            </div>
+        </div>
+
+        <!-- Scan button with improved styling -->
+        <div class="flex mt-4">
+            <button class="w-full btn btn-warning text-white font-semibold hover:bg-amber-500 transition-colors duration-300">
+                <i class="fas fa-qrcode mr-2"></i>Scan Code
+            </button>
+        </div>
+
+        <!-- Improved Form -->
+        <form class="bg-white rounded-2xl shadow-lg mt-4 overflow-hidden">
+            <!-- Form Header -->
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-4">
+                <h2 class="text-xl font-semibold text-white">Product Information</h2>
+            </div>
+
+            <!-- Form Content -->
+            <div class="p-6 space-y-6">
+                <!-- Product Name -->
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-medium text-gray-700">Product Name</span>
+                    </label>
+                    <div class="relative">
+                        <i class="fas fa-box absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="name" name="name" 
+                               class="input input-bordered w-full pl-10 bg-white text-gray-800" 
+                               placeholder="Enter product name"
+                               value="sabun" required>
+                    </div>
+                </div>
+
+                <!-- Product Code -->
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-medium text-gray-700">Product Code</span>
+                    </label>
+                    <div class="relative">
+                        <i class="fas fa-barcode absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="code_item" name="code_item" 
+                               class="input input-bordered w-full pl-10 bg-white text-gray-800" 
+                               placeholder="Enter product code"
+                               value="12345678">
+                    </div>
+                </div>
+
+                <!-- Two columns for smaller inputs -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Category ID -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-medium text-gray-700">Category ID</span>
+                        </label>
+                        <div class="relative">
+                            <i class="fas fa-tag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" id="category_id" name="category_id" 
+                                   class="input input-bordered w-full pl-10 bg-white text-gray-800" 
+                                   placeholder="Enter category ID"
+                                   value="1">
+                        </div>
+                    </div>
+
+                    <!-- Unit Price -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-medium text-gray-700">Unit Price</span>
+                        </label>
+                        <div class="relative">
+                            <i class="fas fa-tag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <span class="absolute left-10 top-1/2 transform -translate-y-1/2 text-gray-500">Rp</span>
+                            <input type="number" id="unit_price" name="unit_price" 
+                                   class="input input-bordered w-full pl-16 bg-white text-gray-800" 
+                                   placeholder="0"
+                                   value="1000">
+                        </div>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="form-control md:col-span-2">
+                        <label class="label">
+                            <span class="label-text font-medium text-gray-700">Quantity</span>
+                        </label>
+                        <div class="relative">
+                            <i class="fas fa-cubes absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <input type="number" id="quantity" name="quantity" 
+                                   class="input input-bordered w-full pl-10 bg-white text-gray-800" 
+                                   placeholder="Enter quantity"
+                                   value="12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Footer -->
+            <div class="bg-gray-50 px-6 py-4 flex justify-end gap-3">
+                <button type="button" class="btn btn-ghost">
+                    <i class="fas fa-times mr-2"></i>Cancel
+                </button>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-check mr-2"></i>Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
