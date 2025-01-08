@@ -53,70 +53,87 @@
             </div>
         </div>
 
+        <video src="" autoplay playsinline muted id="video" style="display: none;"></video>
         <!-- Scan button with improved styling -->
         <div class="flex mt-4">
-            <button class="w-full btn btn-warning text-white font-semibold hover:bg-amber-500 transition-colors duration-300">
+            <button id="button-scan" class="w-full btn btn-warning text-white font-semibold hover:bg-amber-500 transition-colors duration-300">
                 <i class="fas fa-qrcode mr-2"></i>Scan Code
             </button>
         </div>
 
         <!-- Improved Form -->
         <form class="bg-white rounded-2xl shadow-lg mt-4 overflow-hidden">
-            <!-- Form Header -->
             <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-4">
-                <h2 class="text-xl font-semibold text-white">Product Information</h2>
+                <h2 class="text-xl font-semibold text-white">Informasi produk</h2>
             </div>
-
-            <!-- Form Content -->
+        
             <div class="p-6 space-y-6">
-                <!-- Product Name -->
+                <!-- Nama Produk -->
                 <div class="form-control">
                     <label class="label">
-                        <span class="label-text font-medium text-gray-700">Product Name</span>
+                        <span class="label-text font-medium text-gray-700">Nama Produk</span>
                     </label>
                     <div class="relative">
                         <i class="fas fa-box absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                         <input type="text" id="name" name="name" 
                                class="input input-bordered w-full pl-10 bg-white text-gray-800" 
-                               placeholder="Enter product name"
+                               placeholder="Masukkan nama produk"
                                value="sabun" required>
                     </div>
+                    <label class="label">
+                        <span class="label-text-alt text-error " id="name-error">
+                            
+                            
+                        </span>
+                    </label>
                 </div>
-
-                <!-- Product Code -->
+        
+                <!-- Kode Produk -->
                 <div class="form-control">
                     <label class="label">
-                        <span class="label-text font-medium text-gray-700">Product Code</span>
+                        <span class="label-text font-medium text-gray-700">Kode Produk</span>
                     </label>
                     <div class="relative">
                         <i class="fas fa-barcode absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                         <input type="text" id="code_item" name="code_item" 
                                class="input input-bordered w-full pl-10 bg-white text-gray-800" 
-                               placeholder="Enter product code"
+                               placeholder="Masukkan kode produk"
                                value="12345678">
                     </div>
+                    <label class="label">
+                        <span class="label-text-alt text-error " id="code-error">
+                            
+                            
+                        </span>
+                    </label>
                 </div>
-
-                <!-- Two columns for smaller inputs -->
+        
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Category ID -->
+                    <!-- ID Kategori -->
                     <div class="form-control">
                         <label class="label">
-                            <span class="label-text font-medium text-gray-700">Category ID</span>
+                            <span class="label-text font-medium text-gray-700">ID Kategori</span>
                         </label>
                         <div class="relative">
                             <i class="fas fa-tag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input type="text" id="category_id" name="category_id" 
-                                   class="input input-bordered w-full pl-10 bg-white text-gray-800" 
-                                   placeholder="Enter category ID"
-                                   value="1">
+                            <select id="category_id" name="category_id" 
+                                    class="input input-bordered w-full pl-10 bg-white text-gray-800">
+                                <option value="">Pilih kategori</option>
+                               
+                            </select>
                         </div>
+                        <label class="label">
+                            <span class="label-text-alt text-error " id="category-error">
+                                
+                                
+                            </span>
+                        </label>
                     </div>
-
-                    <!-- Unit Price -->
+        
+                    <!-- Harga Satuan -->
                     <div class="form-control">
                         <label class="label">
-                            <span class="label-text font-medium text-gray-700">Unit Price</span>
+                            <span class="label-text font-medium text-gray-700">Harga Satuan</span>
                         </label>
                         <div class="relative">
                             <i class="fas fa-tag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
@@ -126,34 +143,44 @@
                                    placeholder="0"
                                    value="1000">
                         </div>
+                        <label class="label">
+                            <span class="label-text-alt text-error " id="price-error">
+                                
+                                
+                            </span>
+                        </label>
                     </div>
-
-                    <!-- Quantity -->
+        
+                    <!-- Kuantitas -->
                     <div class="form-control md:col-span-2">
                         <label class="label">
-                            <span class="label-text font-medium text-gray-700">Quantity</span>
+                            <span class="label-text font-medium text-gray-700">Kuantitas</span>
                         </label>
                         <div class="relative">
                             <i class="fas fa-cubes absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                             <input type="number" id="quantity" name="quantity" 
                                    class="input input-bordered w-full pl-10 bg-white text-gray-800" 
-                                   placeholder="Enter quantity"
+                                   placeholder="Masukkan kuantitas"
                                    value="12">
                         </div>
+                        <label class="label">
+                            <span class="label-text-alt text-error " id="quantity-error">
+                                
+                                
+                            </span>
+                        </label>
                     </div>
                 </div>
             </div>
-
-            <!-- Form Footer -->
+        
             <div class="bg-gray-50 px-6 py-4 flex justify-end gap-3">
-                <button type="button" class="btn btn-ghost">
-                    <i class="fas fa-times mr-2"></i>Cancel
-                </button>
-                <button type="submit" class="btn btn-success">
+                <button type="submit" id="submit" class="btn btn-success">
                     <i class="fas fa-check mr-2"></i>Submit
                 </button>
             </div>
         </form>
     </div>
+
+    <script type="module" src="/controller/productController.js"></script>
 </body>
 </html>

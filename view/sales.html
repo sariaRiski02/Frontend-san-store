@@ -53,57 +53,32 @@
           </div>
       </div>
 
+      <video src="" autoplay playsinline muted id="video" style="display: none;"></video>
         <!-- scan button -->
         <div class="flex rounded-2xl">
-            <button class="btn btn-warning text-white w-full">
+            <button id="button-scan" class="btn btn-warning text-white w-full">
                 <i class="fas fa-qrcode mr-2"></i>Scan Code
             </button>
         </div>
 
         <!-- cart -->
-<div class="space-y-4">
-  <div class="cart bg-white rounded-2xl shadow-md p-4 flex flex-col gap-3">
-      <div class="flex justify-between items-center">
-          <div class="flex items-center space-x-4">
-              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <i class="fas fa-box text-blue-600 text-xl"></i>
+<div id="cart" class="space-y-4 pb-36">
+  <div id="cart-container" class="cart bg-white rounded-2xl shadow-md p-4 flex flex-col gap-3">
+      <div id="cart-item" class="flex justify-between items-center">
+          <div id="cart-box" class="flex items-center space-x-4">
+              <div id="cart-icon" class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <i id="cart-logo" class="fas fa-box text-blue-600 text-xl"></i>
               </div>
-              <div>
-                  <h1 class="text-lg font-bold text-gray-800">Produk Elektronik</h1>
-                  <p class="text-sm text-gray-500">Kode: 22002920</p>
-              </div>
-          </div>
-          <h2 class="text-xl font-semibold text-blue-600">Rp. 20.000</h2>
-      </div>
-      
-      <div class="flex justify-between items-center">
-          <div class="flex items-center border rounded-lg">
-              <button class="btn btn-ghost btn-sm">-</button>
-                <input type="number" min="1" value="1" class="w-12 text-center bg-white text-black pl-4" readonly>
-              <button class="btn btn-ghost btn-sm">+</button>
-          </div>
-          <button class="btn btn-error btn-sm">
-              <i class="fas fa-trash-alt mr-2"></i>Hapus
-          </button>
-      </div>
-  </div>
-
-  <div class="cart bg-white rounded-2xl shadow-md p-4 flex flex-col gap-3">
-      <div class="flex justify-between items-center">
-          <div class="flex items-center space-x-4">
-              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                  <i class="fas fa-tshirt text-green-600 text-xl"></i>
-              </div>
-              <div>
-                  <h1 class="text-lg font-bold text-gray-800">Pakaian Casual</h1>
-                  <p class="text-sm text-gray-500">Kode: 22002921</p>
+              <div id="cart-detail">
+                  <h1 id="cart-name" class="text-lg font-bold text-gray-800">Produk Elektronik</h1>
+                  <p id="cart-code" class="text-sm text-gray-500">Kode: 22002920</p>
               </div>
           </div>
           <h2 class="text-xl font-semibold text-blue-600">Rp. 20.000</h2>
       </div>
       
-      <div class="flex justify-between items-center">
-        <div class="flex items-center border rounded-lg">
+      <div id="action-product" class="flex justify-between items-center">
+        <div id="container-action" class="flex items-center border rounded-lg">
             <button class="btn btn-ghost btn-sm">-</button>
               <input type="number" min="1" value="1" class="w-12 text-center bg-white text-black pl-4" readonly>
             <button class="btn btn-ghost btn-sm">+</button>
@@ -113,15 +88,18 @@
         </button>
     </div>
   </div>
+  
 </div>
 
-<!-- Total -->
-<div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg rounded-t-2xl p-4">
-  <div class="flex justify-between items-center">
-      <span class="text-lg font-semibold text-gray-800">Total</span>
-      <span class="text-2xl font-bold text-blue-600">Rp. 40.000</span>
-  </div>
-</div>
+    <!-- Total -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg rounded-t-2xl p-4">
+    <div class="flex justify-between items-center">
+        <span class="text-lg font-semibold text-gray-800">Total</span>
+        <span class="text-2xl font-bold text-blue-600">Rp. 40.000</span>
     </div>
+    </div>
+</div>
+
+    <script type="module" src="/controller/saleController.js"></script>
 </body>
 </html>

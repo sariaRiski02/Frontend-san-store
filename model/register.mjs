@@ -3,7 +3,7 @@ import * as Data from '../app/data.mjs';
 export function register(data) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', Data.routeRegister, true);
+        xhr.open('POST', Data.routeApiRegister, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Api-token', Data.apiToken);
         xhr.onload = function() {
