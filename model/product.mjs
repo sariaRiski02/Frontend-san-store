@@ -8,6 +8,7 @@ export function listCategory(){
         xhr.open('GET', Data.routeApiCategory);
         xhr.setRequestHeader('Authorization', 'Bearer ' + Data.apiAuthenticatedUser);
         xhr.setRequestHeader('Api-token', Data.apiToken);
+        xhr.setRequestHeader('ngrok-skip-browser-warning', 'true');  // Menambahkan header untuk melewati peringatan
         xhr.onload = function(){
             resolve(xhr.response);
         }

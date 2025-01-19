@@ -2,10 +2,10 @@ import * as Sales from '../model/sale.mjs';
 
 
 const buttonScan = document.querySelector('#button-scan');
-
+const video = document.querySelector('#video'); // Tambahkan ini
 buttonScan.addEventListener('click', function () {
     if (!('BarcodeDetector' in window)) {
-        alert('Deteksi barcode tidak tersedia di browser ini.');
+        alert('Deteksi  barcode tidak tersedia di browser ini.');
         return;
     }
 
@@ -25,35 +25,68 @@ buttonScan.addEventListener('click', function () {
         formats: ['code_128', 'code_39', 'ean_13', 'ean_8', 'qr_code']
     });
 
+    let barcodeProcessed = false;
+
     // Deteksi barcode
     video.addEventListener('play', async () => {
-        const detectedCodes = new Set(); // Untuk menyimpan hasil deteksi unik
-        async function detectBarcode() {
+        async function detectBarcode() { 
+            if(barcodeProcessed){
+                return;
+            }
             try {
                 const barcodes = await barcodeDetector.detect(video);
-                if (barcodes.length > 0) {
-                    barcodes.forEach(barcode => {
-                        if (!detectedCodes.has(barcode.rawValue)) {
-                            detectedCodes.add(barcode.rawValue);
-
-
-
-
-                            // Matikan kamera
+                if (barcodes.length < 0) {
+                   alert('Kode tidak terdeteksi');
+                }
+                // alert(barcodes.length);
+                const barcode = barcodes[0];
+                if(barcode.rawValue){
+                    barcodeProcessed = true;
+                    Sales.check(barcode.rawValue)
+                        .then(response => {
+                            let items = localStorage.getItem('items');
+                            if(!items){
+                                const product = [];
+                                product.push(response.data);
+                                const productJson = {
+                                    'data' : product
+                                }
+                                localStorage.setItem('items', JSON.stringify(productJson));
+                                loadProduct();
+                            }else{
+                                const productExist = JSON.parse(items);
+                                const isProductExist = productExist.data.some(item => item.code_item === response.data.code_item);
+                                if (!isProductExist) {
+                                    barcodeProcessed = true;
+                                    productExist.data.push(response.data);
+                                    localStorage.setItem('items', JSON.stringify(productExist));
+                                    loadProduct();
+                                } else {
+                                    alert('Produk sudah ada di keranjang.');
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            alert(error);
+                        }).finally(()=>{
                             const stream = video.srcObject;
                             const tracks = stream.getTracks();
                             tracks.forEach(track => track.stop());
                             video.srcObject = null;
-
                             // Sembunyikan tag video
                             video.style.display = 'none';
-                        }
-                    });
+                        });
+
+                    
                 }
+               
             } catch (error) {
                 console.error("Barcode detector error: ", error);
+            } 
+            if (!barcodeProcessed) { 
+                requestAnimationFrame(detectBarcode); // Loop efisien
             }
-            requestAnimationFrame(detectBarcode); // Loop efisien
+            
         }
         detectBarcode();
     });
@@ -62,132 +95,20 @@ buttonScan.addEventListener('click', function () {
 
 
 
-
-document.addEventListener('DOMContentLoaded', function(){
-    const items = {
-        "status": true,
-        "message": "Get all product is successfully",
-        "data": [
-          {
-            "id": 3,
-            "name": "ab",
-            "code_item": "873278",
-            "description": "Sint sed asperiores rem saepe corporis.",
-            "category": {
-              "id": 1,
-              "name": "sed",
-              "deleted_at": null,
-              "created_at": "2024-12-30T07:02:17.000000Z",
-              "updated_at": "2024-12-30T07:02:17.000000Z"
-            },
-            "detail_product": {
-              "id": 1,
-              "product_id": 3,
-              "base_unit": "kg",
-              "factor_base_unit": 137,
-              "unit_price": "746.21",
-              "base_price": "163.04",
-              "discount": "84.04",
-              "deleted_at": null,
-              "created_at": "2024-12-30T07:02:19.000000Z",
-              "updated_at": "2024-12-30T07:02:19.000000Z"
-            },
-            "stock": {
-              "id": 43,
-              "product_id": 3,
-              "quantity_base_unit": 745,
-              "quantity": 22,
-              "created_at": "2024-12-30T07:02:20.000000Z",
-              "updated_at": "2024-12-30T07:02:20.000000Z"
-            },
-            "crated_at": "2024-12-30T07:02:18.000000Z",
-            "updated_at": "2024-12-30T07:02:18.000000Z"
-          },
-          {
-            "id": 4,
-            "name": "delectus",
-            "code_item": "192",
-            "description": "Praesentium eaque ut unde provident.",
-            "category": {
-              "id": 2,
-              "name": "sint",
-              "deleted_at": null,
-              "created_at": "2024-12-30T07:02:17.000000Z",
-              "updated_at": "2024-12-30T07:02:17.000000Z"
-            },
-            "detail_product": {
-              "id": 36,
-              "product_id": 4,
-              "base_unit": "liter",
-              "factor_base_unit": 642,
-              "unit_price": "84.71",
-              "base_price": "456.11",
-              "discount": "54.26",
-              "deleted_at": null,
-              "created_at": "2024-12-30T07:02:19.000000Z",
-              "updated_at": "2024-12-30T07:02:19.000000Z"
-            },
-            "stock": {
-              "id": 5,
-              "product_id": 4,
-              "quantity_base_unit": 16,
-              "quantity": 56,
-              "created_at": "2024-12-30T07:02:19.000000Z",
-              "updated_at": "2024-12-30T07:02:19.000000Z"
-            },
-            "crated_at": "2024-12-30T07:02:18.000000Z",
-            "updated_at": "2024-12-30T07:02:18.000000Z"
-          },
-          {
-            "id": 5,
-            "name": "non",
-            "code_item": "66",
-            "description": "Molestiae animi doloremque sed deleniti est et officiis harum.",
-            "category": {
-              "id": 9,
-              "name": "vero",
-              "deleted_at": null,
-              "created_at": "2024-12-30T07:02:17.000000Z",
-              "updated_at": "2024-12-30T07:02:17.000000Z"
-            },
-            "detail_product": {
-                "id": 36,
-                "product_id": 4,
-                "base_unit": "liter",
-                "factor_base_unit": 642,
-                "unit_price": "84.71",
-                "base_price": "456.11",
-                "discount": "54.26",
-                "deleted_at": null,
-                "created_at": "2024-12-30T07:02:19.000000Z",
-                "updated_at": "2024-12-30T07:02:19.000000Z"
-              },
-            "stock": {
-              "id": 96,
-              "product_id": 5,
-              "quantity_base_unit": 399,
-              "quantity": 91,
-              "created_at": "2024-12-30T07:02:20.000000Z",
-              "updated_at": "2024-12-30T07:02:20.000000Z"
-            },
-            "crated_at": "2024-12-30T07:02:18.000000Z",
-            "updated_at": "2024-12-30T07:02:18.000000Z"
-          },
-        ]
-    }
-
-    localStorage.setItem('item', JSON.stringify(items));
-
-    const localStorageItem = JSON.parse(localStorage.getItem('item'));
-
-    localStorageItem.data.forEach(item => {
+function loadProduct(){
+    const localStorageItem = JSON.parse(localStorage.getItem('items'));
+    const cart = document.querySelector('#cart');
+    while (cart.firstChild) {
+        cart.removeChild(cart.firstChild);
+    } 
+    
+    localStorageItem.data.reverse().forEach((item, index) => {
         // cart
-        const cart = document.querySelector('#cart');
         
         // cart-container
         const cartContainer = document.createElement('div');
         cartContainer.classList.add('cart', 'bg-white', 'rounded-2xl', 'shadow-md', 'p-4', 'flex', 'flex-col', 'gap-3');
-        cartContainer.id = 'cart-container-'+item.id;
+        cartContainer.id = 'cart-container-'+ item.id ;
 
         // cart-item
         const cartItem = document.createElement('div');
@@ -248,30 +169,52 @@ document.addEventListener('DOMContentLoaded', function(){
         buttonMinus.textContent = '-'
         buttonMinus.classList.add('btn' ,'btn-ghost','btn-sm');
         buttonMinus.id = 'button-minus-' + item.id;
+
+        buttonMinus.addEventListener('click', () => {
+            minus(item.id);
+            result();
+        });
         
         const count = document.createElement('input');
-        count.type = 'input';
+        count.type = 'number';
         count.min = 1;
         count.value = 1;
-        count.classList.add('w-12', 'text-center', 'bg-white', 'text-black' ,'pl-4');
-        count.id = 'count-'+ item.id;
+        count.classList.add('w-12', 'text-center', 'bg-white', 'text-black');
+        count.id = 'count-' + item.id;
+
+        // Update total ketika jumlah diubah
+        count.addEventListener('input', () => {
+            result();
+        });
+
 
         // button add
         const buttonAdd = document.createElement('button');
-        buttonAdd.id = 'button-add';
+        buttonAdd.id = 'button-add' + item.id;
         buttonAdd.textContent = '+';
         buttonAdd.classList.add('btn', 'btn-ghost', 'btn-sm');
         
+        buttonAdd.addEventListener('click', ()=>{
+            plus(`${item.id}`);
+            result();
+        });
+
         // button delete
         const buttonDelete = document.createElement('button');
-        buttonDelete.classList.add('btn', 'btn-error', 'btn-sm')
+        buttonDelete.classList.add('btn', 'btn-error', 'btn-sm');
         buttonDelete.id = 'button-delete-' + item.id;
-        
+
         // icon trash
         const trash = document.createElement('i');
-        trash.id = 'trash-'+item.id;
-        trash.classList.add('fas','fa-trash-alt', 'mr-2');
+        trash.id = 'trash-' + item.id;
+        trash.classList.add('fas', 'fa-trash-alt', 'mr-2');
 
+        // Event listener untuk menghapus item
+        buttonDelete.addEventListener('click', () => {
+            deleteItem(item.id);
+        });
+
+    
         
         // merakit cart
        
@@ -304,8 +247,61 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
-    })
+    });
+
+}
+
+window.addEventListener('DOMContentLoaded', function(){
+    loadProduct();
+    result();
+})
+   
+
+
+function minus(id){
+    const input = document.querySelector('#count-'+id);
+    input.value > 1 ? input.value-- : input.value;
+}
+function plus (id){
+    const input = document.querySelector('#count-'+id);
+    input.value++;
+}
+
+function result() {
+    const totalElement = document.querySelector('#result');
+    const product = JSON.parse(localStorage.getItem('items'));
+    let total = 0;
+
+    product.data.forEach(item => {
+        // Ambil jumlah dari input pengguna berdasarkan ID
+        const countElement = document.querySelector(`#count-${item.id}`);
+        const count = countElement ? parseInt(countElement.value, 10) : 1;
+
+        // Kalikan harga satuan dengan jumlah
+        total += count * Number(item.detail_product.unit_price);
+    });
+
+    // Tampilkan hasil total
+    totalElement.textContent = `Rp. ${total.toLocaleString('id-ID')}`;
+}
+
+
+function deleteItem(id) {
+    const items = JSON.parse(localStorage.getItem('items'));
+
+    // Filter data untuk menghapus item dengan id yang diberikan
+    const updatedItems = items.data.filter(item => item.id !== id);
+
+    // Simpan kembali data yang telah diperbarui ke localStorage
+    localStorage.setItem('items', JSON.stringify({ data: updatedItems }));
+
+    // Perbarui tampilan keranjang
+    loadProduct();
+
+    // Perbarui total harga
+    result();
+}
+
 
 
     
-});

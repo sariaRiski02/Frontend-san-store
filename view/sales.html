@@ -79,9 +79,9 @@
       
       <div id="action-product" class="flex justify-between items-center">
         <div id="container-action" class="flex items-center border rounded-lg">
-            <button class="btn btn-ghost btn-sm">-</button>
-              <input type="number" min="1" value="1" class="w-12 text-center bg-white text-black pl-4" readonly>
-            <button class="btn btn-ghost btn-sm">+</button>
+            <button class="btn btn-ghost btn-sm" onclick="minus()">-</button>
+              <input type="number" min="1" value="1" class="w-12 text-center bg-white text-black pl-4">
+            <button class="btn btn-ghost btn-sm" onclick="add()">+</button>
         </div>
         <button class="btn btn-error btn-sm">
             <i class="fas fa-trash-alt mr-2"></i>Hapus
@@ -95,7 +95,7 @@
     <div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg rounded-t-2xl p-4">
     <div class="flex justify-between items-center">
         <span class="text-lg font-semibold text-gray-800">Total</span>
-        <span class="text-2xl font-bold text-blue-600">Rp. 40.000</span>
+        <span class="text-2xl font-bold text-blue-600" id="result">Rp. 0</span>
     </div>
     </div>
 </div>

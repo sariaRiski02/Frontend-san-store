@@ -1,16 +1,18 @@
 
 export const apiToken = 'san-store-1980';
-export const apiAuthenticatedUser = '11|d8cPedM0rEy3IqfKoWp7JPgrY2nzJw7sPojyppV8148ccea8';
+export const apiAuthenticatedUser = '13|lo3qtO7Q2I4ZRdVGz2UZsnSVv24rezr4eRNzpoOOc3b6db29';
 
 // URL api
-export const urlApi = 'http://127.0.0.1:8000/api/';
+
+export const urlApi = 'https://7407-2404-c0-4850-00-6c0-d33c.ngrok-free.app/api/';
 export const routeApiRegister = urlApi + 'register';
 export const routeApiLogin = urlApi + 'login';
 export const routeApiAddProduct = urlApi + 'product';
 export const routeApiCategory = urlApi + 'category';
+export const routeApiCheck = urlApi + 'sales/check/';
 
 // URL view
-export const routeView = 'https://jxd1h4ll-5500.asse.devtunnels.ms/view/'
+export const routeView = 'https://w3f795sr-5500.asse.devtunnels.ms/view/'
 export const routeViewLogin = routeView + 'login.html';
 export const routeViewSale = routeView + 'sales.html';
 
