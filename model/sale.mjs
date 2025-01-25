@@ -8,7 +8,7 @@ export function check(code_item){
         const endpoint =  Data.routeApiCheck + code_item;
         xhr.open('GET', endpoint);
         xhr.setRequestHeader('Api-token', Data.apiToken);
-        xhr.setRequestHeader('Authorization', 'Bearer ' + Data.apiAuthenticatedUser);
+        xhr.setRequestHeader('Authorization', Data.apiAuthenticatedUser);
         xhr.setRequestHeader('ngrok-skip-browser-warning', 'true');
 
         xhr.onload = function(){

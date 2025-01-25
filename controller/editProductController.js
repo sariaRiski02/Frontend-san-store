@@ -1,5 +1,6 @@
 import * as Product from '../model/product.mjs';
-import * as Display from '../model/displayComponent.mjs';
+import * as Data from '../app/data.mjs';
+import * as Display from '../model/displayComponent.mjs'
 
 const buttonScan = document.querySelector('#button-scan');
 const nameProduct = document.querySelector('#name');
@@ -96,17 +97,34 @@ buttonScan.addEventListener('click', function () {
     });
 });
 
-// send data
+const params = new URLSearchParams(window.location.search); 
+const id = params.get('id');
+
+document.addEventListener('DOMContentLoaded', function(){
+    Product.getProduct(id)
+        .then(response => {
+            const responseData = response.data;
+            nameProduct.value = responseData.name;
+            codeItem.value = responseData.code_item;
+            category.value = responseData.category.id;
+            unitPrice.value = responseData.detail_product.unit_price;
+            quantity.value = responseData.stock.quantity;
+        }).catch(error => {
+            alert(error);
+        });
+});
+
 submit.addEventListener('click', function(event) {
+    
     event.preventDefault(); // Prevent the page from reloading
     
-    Product.addProduct({
+    Product.editProduct({
         'name': nameProduct.value,
         'code_item': codeItem.value,
         'category_id': category.value,
         'unit_price': unitPrice.value,
         'quantity': quantity.value,
-    }).then(response => {
+    }, id).then(response => {
         if (!response.status) {
             const error = response.errors;
             nameEr.textContent = error.name ? error.name[0] : '';
@@ -116,13 +134,14 @@ submit.addEventListener('click', function(event) {
             quantityEr.textContent = error.quantity ? error.quantity[0] : '';
         } else {
             // Handle success case, e.g., show a success message or redirect
-            alert("Data berhasil ditambahkan");
-            location.reload();
+            alert("Data berhasil diubah");
+            window.location.href = Data.routeViewSale; 
             
         }
     }).catch(error => {
-        console.log('Product gagal di tambahkan: ', error);
+        alert('Product gagal diubah: ', error);
     });
 });
+
 
 Display.displayComponent();

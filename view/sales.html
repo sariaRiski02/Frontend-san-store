@@ -13,45 +13,45 @@
     <div class="min-h-screen bg-gradient-to-r from-blue-400 to-purple-500 p-4 flex flex-col overflow-auto gap-2">
         <!-- Improved header -->
         <div class="navbar bg-white rounded-2xl shadow-lg p-2">
-          <div class="navbar-start">
-              <div class="dropdown">
-                  <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                      <i class="fas fa-bars"></i>
-                  </div>
-                  <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52">
-                      <li><a onclick="route('sales')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-chart-line mr-2"></i>Sales Dashboard</a></li>
-                      <li><a onclick="route('add-product')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-plus mr-2"></i>Add Product</a></li>
-                      <div class="divider my-1"></div>
-                      <li><a onclick="route('login')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-sign-in-alt mr-2"></i>Sign In</a></li>
-                      <li><a onclick="route('register')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-user-plus mr-2"></i>Register</a></li>
-                      <div class="divider my-1"></div>
-                      <li><a onclick="route('logout')" class="text-red-600 hover:text-red-700"><i class="fas fa-sign-out-alt mr-2"></i>Sign Out</a></li>
-                  </ul>
-              </div>
-              <a class="btn btn-ghost text-xl text-blue-600">San-store</a>
-          </div>
-          
-          <div class="navbar-center hidden lg:flex">
-              <ul class="menu menu-horizontal px-1 gap-2">
-                  <li><a onclick="route('sales')" class="btn btn-ghost text-gray-700 hover:text-blue-600"><i class="fas fa-chart-line mr-2"></i>Sales Dashboard</a></li>
-                  <li><a onclick="route('add-product')" class="btn btn-ghost text-gray-700 hover:text-blue-600"><i class="fas fa-plus mr-2"></i>Add Product</a></li>
-              </ul>
-          </div>
-          
-          <div class="navbar-end gap-2">
-              <div class="hidden lg:flex gap-2">
-                  <button onclick="route('login')" class="btn btn-primary bg-gradient-to-r from-blue-400 to-purple-500 btn-sm hover:bg-blue-50">
-                      <i class="fas fa-sign-in-alt mr-2"></i>Sign In
-                  </button>
-                  <button onclick="route('register')" class="btn btn-primary btn-sm">
-                      <i class="fas fa-user-plus mr-2"></i>Register
-                  </button>
-              </div>
-              <button onclick="route('logout')" class="hidden lg:flex btn btn-error btn-sm">
-                  <i class="fas fa-sign-out-alt mr-2"></i>Sign Out
-              </button>
-          </div>
-      </div>
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52">
+                        <li id="check-price-mob"><a onclick="route('sales')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-chart-line mr-2"></i>Cek Harga</a></li>
+                        <li id="add-product-mob"><a onclick="route('add-product')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-plus mr-2"></i>Tambah Produk</a></li>
+                        <li id="sign-in-mob"><a onclick="route('login')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-sign-in-alt mr-2"></i>Sign In</a></li>
+                        <li id="register-mob"><a onclick="route('register')" class="text-gray-700 hover:text-blue-600"><i class="fas fa-user-plus mr-2"></i>Register</a></li>
+                        <div class="divider my-1"></div>
+                        <li id="logout-mob"><a onclick="route('logout')" class="text-red-600 hover:text-red-700"><i class="fas fa-sign-out-alt mr-2"></i>Keluar</a></li>
+                    </ul>
+                </div>
+                <a class="btn btn-ghost text-xl text-blue-600">Toko santi</a>
+            </div>
+            
+            <div class="navbar-center hidden lg:flex">
+                <ul id="cek-add-desk" class="menu menu-horizontal px-1 gap-2">
+                    <li><a onclick="route('sales')" class="btn btn-ghost text-gray-700 hover:text-blue-600"><i class="fas fa-chart-line mr-2"></i>Cek Harga</a></li>
+                    <li><a onclick="route('add-product')" class="btn btn-ghost text-gray-700 hover:text-blue-600"><i class="fas fa-plus mr-2"></i>Tambah Produk</a></li>
+                </ul>
+            </div>
+            
+            <div class="navbar-end gap-2">
+                <div class="hidden lg:flex gap-2">
+                    <button id="sign-in-desk" onclick="route('login')" class="btn btn-primary bg-gradient-to-r from-blue-400 to-purple-500 btn-sm hover:bg-blue-50">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                    </button>
+                    <button id="register-desk" onclick="route('register')" class="btn btn-primary btn-sm">
+                        <i class="fas fa-user-plus mr-2"></i>Register
+                    </button>
+                </div>
+                <button id="logout-desk" onclick="route('logout')" class="hidden lg:flex btn btn-error btn-sm">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Keluar
+                </button>
+            </div>
+        </div>
+
 
       <video src="" autoplay playsinline muted id="video" style="display: none;"></video>
         <!-- scan button -->
@@ -100,6 +100,7 @@
     </div>
 </div>
 
+    <script type="module" src="/middleware/AuthenticatedMiddleware.js"></script>
     <script type="module" src="/controller/saleController.js"></script>
 </body>
 </html>

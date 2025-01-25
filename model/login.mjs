@@ -7,13 +7,17 @@ export function login(data){
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Api-token', Data.apiToken);
         xhr.onload = function(){
-            const fetchData = JSON.parse(xhr.responseText);
-            if(!fetchData.status){
-                resolve(fetchData);
-                return;
+            try{
+                const fetchData = JSON.parse(xhr.responseText);
+                if(fetchData){
+                    resolve(fetchData);
+                    return;
+                }else{
+                    reject('error');
+                }
+            }catch(error){
+                reject(error);
             }
-            // window.location.href = Data.routeViewSale;
-            document.cookie = `token=${fetchData.token}; path=/; secure; SameSite=Strict`;
         }
         xhr.onerror = function(){
             reject('Network Error');

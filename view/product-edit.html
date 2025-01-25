@@ -52,6 +52,7 @@
             </div>
         </div>
 
+
         <video src="" autoplay playsinline muted id="video" style="display: none;"></video>
         <!-- Scan button with improved styling -->
         <div class="flex mt-4">
@@ -63,7 +64,7 @@
         <!-- Improved Form -->
         <form class="bg-white rounded-2xl shadow-lg mt-4 overflow-hidden">
             <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-4">
-                <h2 class="text-xl font-semibold text-white">Tambah produk</h2>
+                <h2 class="text-xl font-semibold text-white">Informasi produk</h2>
             </div>
         
             <div class="p-6 space-y-6">
@@ -98,7 +99,7 @@
                                placeholder="Masukkan kode produk">
                     </div>
                     <label class="label">
-                        <span class="label-text-alt text-error" id="code-error"></span>
+                        <span class="label-text-alt text-error " id="code-error"></span>
                     </label>
                 </div>
         
@@ -172,6 +173,6 @@
     </div>
 
     <script type="module" src="/middleware/AuthenticatedMiddleware.js"></script>
-    <script type="module" src="/controller/productController.js"></script>
+    <script type="module" src="/controller/editProductController.js"></script>
 </body>
 </html>
